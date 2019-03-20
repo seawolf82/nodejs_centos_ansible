@@ -1,4 +1,4 @@
-# postgres_centos_ansible
+# Nodejs_centos_ansible
 
 
 This script install on centos7 Nodejs 10
