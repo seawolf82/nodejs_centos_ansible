@@ -1,0 +1,6 @@
+- name: Terminate running Nodejs and remove all files
+  hosts: nodejs-servers
+  remote_user: root
+  roles:
+    - nodejs_uninstall
+

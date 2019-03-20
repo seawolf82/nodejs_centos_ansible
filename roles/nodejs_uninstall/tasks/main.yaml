@@ -1,0 +1,38 @@
+---
+
+- name: Remove repository Nodejs_10
+  yum_repository:
+    name: nodesource-el7.repo
+    state: absent
+  notify: yum-clean-metadata  
+  tags: nodejs
+
+
+- name: Remove repository Yarn package manager
+  yum_repository:
+    name: yarn
+    state: absent
+  notify: yum-clean-metadata  
+  tags: nodejs
+
+
+- name: Install Node.js and npm
+  yum:
+    name: "{{ packages }}"
+    state: absent
+  vars:
+    packages:
+    - nodejs
+    - yarn
+    - gcc-c++ 
+    - make
+  tags: nodejs
+
+
+- name: Removing port 3000/TCP
+  firewalld:
+    port: 3000/tcp
+    permanent: true
+    immediate: true
+    state: disabled
+  tags: nodejs
