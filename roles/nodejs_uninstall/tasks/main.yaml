@@ -16,7 +16,7 @@
   tags: nodejs
 
 
-- name: Install Node.js and npm
+- name: Remove Node.js and npm
   yum:
     name: "{{ packages }}"
     state: absent
