@@ -1,14 +1,26 @@
 # Nodejs_centos_ansible
 
+Tested on:
 
-This script install on centos7 Nodejs 10
+    Almalinux 8
+    Almalinux 9
+    RockyLinux 8
+    RockyLinux 9
+    Centos 7
+
+Tested on:
+
+    2.9 Ansible version
 
 
-To install Nodejs 10 on centos7 run:
+This script install on centos7 Nodejs 10 and Nodejs 16 On EL8-EL9
+
+
+To install Nodejs run:
 
 ansible-playbook -i hosts site.yaml
 
-To uninstall Nodejs 10 on centos7 run:
+To uninstall Nodejs run:
 
 ansible-playbook -i hosts deprovision.yaml
 
