@@ -4,7 +4,8 @@
   yum_repository:
     name: nodesource-el7.repo
     state: absent
-  notify: yum-clean-metadata  
+  notify: yum-clean-metadata
+  when: ansible_facts['os_family'] == "RedHat" and ansible_facts['distribution_major_version'] == "7"  
   tags: nodejs
 
 
@@ -12,7 +13,8 @@
   yum_repository:
     name: yarn
     state: absent
-  notify: yum-clean-metadata  
+  notify: yum-clean-metadata
+  when: ansible_facts['os_family'] == "RedHat" and ansible_facts['distribution_major_version'] == "7" 
   tags: nodejs
 
 
@@ -26,6 +28,13 @@
     - yarn
     - gcc-c++ 
     - make
+  when: ansible_facts['os_family'] == "RedHat" and ansible_facts['distribution_major_version'] == "7" 
+  tags: nodejs
+
+
+- name: Remove Node.js version 16 from repository for EL8/EL9
+  shell: dnf module remove nodejs:16
+  when: (ansible_facts['os_family'] == "RedHat" and ansible_facts['distribution_major_version'] == "8") or (ansible_facts['os_family'] == "RedHat" and ansible_facts['distribution_major_version'] == "9") 
   tags: nodejs
 
 

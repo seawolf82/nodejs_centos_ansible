@@ -2,13 +2,20 @@
 
 - name: Install repository Nodejs_10
   shell: curl -sL https://rpm.nodesource.com/setup_10.x | sudo -E bash -
+  when: ansible_facts['os_family'] == "RedHat" and ansible_facts['distribution_major_version'] == "7" 
   tags: nodejs
 
 
 - name: Install repository Yarn package manager
   shell: curl -sL https://dl.yarnpkg.com/rpm/yarn.repo | sudo tee /etc/yum.repos.d/yarn.repo
+  when: ansible_facts['os_family'] == "RedHat" and ansible_facts['distribution_major_version'] == "7" 
   tags: nodejs
 
+
+- name: Install Node.js version 16 from repository for EL8/EL9
+  shell: dnf module install nodejs:16
+  when: (ansible_facts['os_family'] == "RedHat" and ansible_facts['distribution_major_version'] == "8") or (ansible_facts['os_family'] == "RedHat" and ansible_facts['distribution_major_version'] == "9") 
+  tags: nodejs
 
 - name: Install Node.js and npm
   yum:
@@ -19,6 +26,7 @@
     - yarn
     - gcc-c++ 
     - make
+  when: ansible_facts['os_family'] == "RedHat" and ansible_facts['distribution_major_version'] == "7" 
   tags: nodejs
 
 
