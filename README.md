@@ -13,7 +13,7 @@ Tested on:
 - 2.9 Ansible version
 
 
-This script install on centos7 Nodejs 10 and Nodejs 16 On EL8-EL9
+This script install on centos7 Nodejs 10 and Nodejs 16 on EL8-EL9
 
 
 To install Nodejs run:
